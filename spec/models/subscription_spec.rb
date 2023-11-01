@@ -14,7 +14,7 @@ RSpec.describe Subscription, type: :model do
   end
 
   describe "enum definitions" do
-    it { should define_enum_for(:status).with_values([:active, :inactive, :frozen]) }
+    it { should define_enum_for(:status).with_values([:active, :cancelled]) }
     it { should define_enum_for(:frequency).with_values([:biweekly, :monthly, :three_months]) }
   end
 end
