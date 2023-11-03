@@ -2,8 +2,12 @@ class Api::V0::SubscriptionsController < ApplicationController
   before_action :set_customer
 
   def create
-    new_sub = @customer.subscriptions.create!(subscription_params)
-    render json: { message: "Subscription #{new_sub.title} created!" }, status: 201
+    new_sub = @customer.subscriptions.new(subscription_params)
+    if new_sub.save
+      render json: { message: "Subscription #{new_sub.title} created!" }, status: 201
+    else
+      render json: { message: "One or more missing fields." }, status: 400
+    end
   end
 
     def update
