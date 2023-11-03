@@ -17,10 +17,4 @@ RSpec.describe Customer, type: :model do
     it { should validate_uniqueness_of(:email)}
     it { should validate_length_of(:zip)}
   end
-
-  describe "model methods" do
-    
-    context "#concat_address"
-
-  end
 end
