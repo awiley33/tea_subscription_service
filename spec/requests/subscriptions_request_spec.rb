@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "Subscriptions Endpoints", type: :request do
   before do
-    # Subscription.all.destroy
-    # Customer.all.delete
-    # Tea.all.delete
-
     create_list(:customer, 3)
     @customer_1 = Customer.all[0]
     @customer_2 = Customer.all[1]
@@ -75,6 +71,21 @@ RSpec.describe "Subscriptions Endpoints", type: :request do
     expect(new_sub.price).to eq(10.99)
     expect(new_sub.status).to eq("active")
     expect(new_sub.frequency).to eq("biweekly")
+  end
+
+  it "does not create a new subscription if necessary information is missing" do
+    params = ({
+        "user_id": @customer_3.id,
+        "tea_id": @tea_3.id,
+        "price": 10.99,
+        "status": "active",
+        "frequency": "biweekly"
+      })
+
+    post "/api/v0/customers/#{@customer_3.id}/subscriptions", params: params, as: :json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
   end
 
   it "cancels a customer's subscription" do
