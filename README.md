@@ -1,7 +1,71 @@
-# Tea Subscription Service Rest API
+# Tea Subscription Service
+
+### Table of Contents
+1. [Purpose](#purpose)
+2. [Database Design](#database-design)
+3. [Endpoints](#endpoints)
+4. [Built With](#built-with)
+5. [Getting Started](#getting-started)
 
 ## Purpose
-The main function of this repo is to serve as a Rest API to a front end client that is selling tea subscription boxes. This project was built to satisfy the following prompt given by Turing School of Software @ Design: [Take Home Challenge](https://mod4.turing.edu/projects/take_home/take_home_be)
+The main function of this repo is to serve as a Rest API to a front end client that is selling tea subscription boxes. This project was built to satisfy the following prompt given by Turing School of Software & Design: [Take Home Challenge](https://mod4.turing.edu/projects/take_home/take_home_be)
+
+## Database Design
+
+### Customers
+has many Subscriptions
+| Attribute   |  Data Type  |
+| ----------- | ----------- |
+| first_name      | string       |
+| last_name   | string   |
+| email   | string   |
+| street   | string   |
+| city   | string   |
+| state   | string   |
+| zip   | integer   |
+| full_address   | string   |
+| updated_at   | datetime   |
+| created_at   | datetime   |
+
+### Teas
+has many Subscriptions
+| Attribute   |  Data Type  |
+| ----------- | ----------- |
+| title      | string       |
+| description   | string   |
+| temperature   | integer   |
+| brew_time   | integer   |
+| created_at   | datetime   |
+| updated_at   | datetime   |
+
+### Subscriptions
+belongs to Tea, Customer
+| Attribute   |  Data Type  |
+| ----------- | ----------- |
+| tea_id      | bigint       |
+| customer_id   | bigint   |
+| title   | string   |
+| price   | float   |
+| status   | integer   |
+| frequency   | integer   |
+| created_at   | datetime   |
+| updated_at   | datetime   |
+
+
+## Endpoints
+
+View all of a customer’s subscriptions (active and cancelled)
+```
+GET 'api/v0/customers/:customer_id/subscriptions'
+```
+Subscribe a customer to a tea subscription
+```
+POST 'api/v0/customers/:customer_id/subscriptions'
+```
+Cancel a customer’s tea subscription
+```
+PATCH 'api/v0/customers/:customer_id/subscriptions/:id'
+```
 
 ## Built With
 * ![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)
@@ -31,24 +95,3 @@ bundle install
 ```
 rails db:{create,migrate,seed}
 ```
-
-## Exposed Endpoints
-
-An endpoint to see all of a customer’s subsciptions (active and cancelled)
-```
-GET 'api/v0/customers/:customer_id/subscriptions'
-```
-An endpoint to subscribe a customer to a tea subscription
-```
-POST 'api/v0/customers/:customer_id/subscriptions'
-```
-An endpoint to cancel a customer’s tea subscription
-```
-PATCH 'api/v0/customers/:customer_id/subscriptions/:id'
-```
-
-## Database Design
-
-### Customers
-| first_name | string |
-| last_name | string |
