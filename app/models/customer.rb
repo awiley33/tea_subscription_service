@@ -6,11 +6,11 @@ class Customer < ApplicationRecord
   validates_length_of :zip, is: 5
   validates_uniqueness_of :email
 
-  before_save :concat_address
+  before_save :combine_address
 
 
   private
-  def concat_address
+  def combine_address
     self.full_address = "#{self.street} #{self.city}, #{self.state} #{self.zip}"
   end
 end
