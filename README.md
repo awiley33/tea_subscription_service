@@ -8,7 +8,7 @@
 5. [Getting Started](#getting-started)
 
 ## Purpose
-The main function of this repo is to serve as a Rest API service to the front end client, for a user that is selling tea subscription boxes. This project was built to satisfy the following prompt given by Turing School of Software & Design: [Take Home Challenge](https://mod4.turing.edu/projects/take_home/take_home_be)
+The main function of this repo is to serve as a Rest API to the front end client, for an end user that is selling tea subscription boxes. This project was built to satisfy the following prompt given by Turing School of Software & Design: [Take Home Challenge](https://mod4.turing.edu/projects/take_home/take_home_be)
 
 ## Database Design
 
